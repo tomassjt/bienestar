@@ -17,6 +17,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTableModule } from '@angular/material/table';
 import { UsuariosService } from '../../../services/usuarios.service';
 import { Profesional } from '../../../models/profesional';
+import { BtnVolverComponent } from '../btn-volver/btn-volver.component';
 @Component({
   selector: 'app-registrar',
   standalone: true,
@@ -32,7 +33,8 @@ import { Profesional } from '../../../models/profesional';
     MatSliderModule,
     MatCheckboxModule,
     MatSlideToggleModule,
-    MatTableModule,],
+    MatTableModule,
+    BtnVolverComponent],
   templateUrl: './registrar.component.html',
   styleUrl: './registrar.component.css'
 })

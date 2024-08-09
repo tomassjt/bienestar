@@ -16,6 +16,7 @@ import { Turno } from '../../../models/turno';
 import { EstadoService } from '../../../services/estado.service';
 import { Profesional } from '../../../models/profesional';
 import { UsuariosService } from '../../../services/usuarios.service';
+import { diaDeCalendario } from '../../../models/diaDeCalendario';
  
 @Component({
   selector: 'app-turnos',
@@ -294,9 +295,32 @@ export class TurnosComponent implements OnInit {
     });
   }
 
+  mostrarEspecialidad(d: any) {
+    //console.log("tomando especiaidad", d.especialidad)
+    return d.especialidad;
+  }
+  mostrarProfesioanl(d: any) {
+    //console.log("tomando especiaidad", d.especialidad)
+    return d.profesional;
+  }
+
+  mostrarHorario(d: any) {
+    //console.log("tomando especiaidad", d.especialidad)
+    return d.horarioH.split('-')[1];
+  }
+ 
   mostrarTurnos() {
+    console.log("quiero ver los turnosss",this.usuarioActual.dias);
     this.habilitarCalendario = true;
     this.existenTurnos = true;
+    const scrollDistance = 700;
+    const scrollDuration = 1000;
+
+    window.scrollBy({
+      top: scrollDistance,
+      behavior: 'smooth'
+    });
+
   }
 
   precargaDeEspecialidades() {

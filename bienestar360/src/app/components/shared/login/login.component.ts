@@ -14,12 +14,14 @@ import { UsuariosService } from '../../../services/usuarios.service';
 import { Profesional } from '../../../models/profesional';
 import { CacheTurnosService } from '../../../services/cache-turnos.service';
 import { EstadoService } from '../../../services/estado.service';
+import { BtnVolverComponent } from '../btn-volver/btn-volver.component';
  
 
 @Component({
   selector: 'app-login',
   standalone: true,
   imports: [
+    BtnVolverComponent,
     MatCardModule,
   
     MatButtonModule,
