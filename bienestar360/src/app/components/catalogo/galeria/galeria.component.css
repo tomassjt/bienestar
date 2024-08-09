@@ -1,0 +1,38 @@
+.grid-tile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  border: 1px solid white;
+}
+
+
+mat-grid-tile{
+    text-align:center;
+    justify-content:center;
+    align-items:center;
+    display:flex;
+    flex-direction:column;
+}
+mat-grid-tile p{
+    font-size:24px;
+    font-weight:400;
+    color:#333;
+}
+
+mat-grid-tile h3{
+    font-size:28px;
+    font-weight:500;
+    color:#333;
+}
+mat-grid-tile a{
+    text-decoration:none;
+    color:#333;
+  }
+  mat-grid-tile img {
+    width: 100%;
+ 
+    
+    object-position: center;
+    object-fit: fill;
+  }

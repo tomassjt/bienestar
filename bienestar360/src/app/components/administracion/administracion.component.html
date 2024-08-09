@@ -1,0 +1,114 @@
+
+<app-btn-volver></app-btn-volver>
+<br />
+<br />
+<br />
+<br />
+<div style="padding-left:20px;">
+  <h1>Administracion</h1>
+  <p>Configure su semana de trabajo </p>
+  <br />
+
+  <hr />
+  <br />
+  <p>Duración de las consultas</p>
+  <div class="example-label-container">
+    <label id="example-name-label" class="example-name-label">Duración:</label>
+    <label class="example-value-label"> {{slider.value}} minutos</label>
+  </div>
+  <mat-slider class="example-margin"
+              [disabled]="disabled"
+              [max]="max"
+              [min]="min"
+              [step]="step"
+              [discrete]="thumbLabel"
+              [showTickMarks]="showTicks">
+    <input matSliderThumb [(ngModel)]="value" #slider (ngModelChange)="duracionTurnoChange($event)">
+  </mat-slider>
+  <br />
+  <hr />
+  <br />
+  <div>
+    <h4>Semana {{slider2.value}} de {{mesActual}}  </h4>
+    <!--<label id="example-name-label" class="example-name-label">Semana:</label>
+    <label class="example-value-label"> {{slider2.value}} </label>-->
+    <br />
+    <mat-slider class="example-margin"
+                [disabled]="disabled"
+                [max]="5"
+                [min]="1"
+                [step]="1"
+                [discrete]="thumbLabel"
+                [showTickMarks]="true">
+      <input matSliderThumb [(ngModel)]="value2" #slider2 (ngModelChange)="onValueChange($event)">
+    </mat-slider>
+    <br />
+    <br />
+    <div class="containerDias" style="height:auto!important; ">
+      @for(dia of dias; track dia){
+
+      <div class="dia" (click)="seleccionarDia(obtenerNombreDiaSemana(dia), dia)"><h3> {{obtenerNombreDiaSemana(dia)}} {{dia}} </h3></div>
+
+      }
+    </div>
+  </div>
+
+  <br />
+  <hr />
+  <div>
+    <h4>Configuracion turnos por semana</h4>
+    <p>Horario</p>
+    <label style="margin-right:5px;">Marcar día como no disponible</label>
+    <mat-slide-toggle class="example-margin"
+                      [checked]="checkedT"
+                      [disabled]="disabledT"
+                      (change)="marcarDiaComoNoDisponible($event)">
+
+    </mat-slide-toggle>
+
+  </div>
+  <hr />
+  <br />
+  @if(value2 != undefined ){
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="turno">
+      <th mat-header-cell *matHeaderCellDef style="width:80%;"> Turnos del día {{obtenerNombreDiaSemana(diaSeleccionado.dia.numero || -1)}} {{diaSeleccionado.dia.numero}}</th>
+      <td mat-cell *matCellDef="let element" [ngClass]="{'unavailable': !element.disponible}">
+        {{element.horario}}
+      </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef> Acción </th>
+      <td mat-cell *matCellDef="let element">
+        <mat-icon (click)="toggleAvailability(element)"
+                  style="cursor: pointer; color: {{element.disponible ? 'green' : 'red'}};">
+          {{element.disponible ? 'check_circle' : 'cancel'}}
+        </mat-icon>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  }
+
+  <br />
+
+  <!--<button (click)="guardarConfigDelDia()">Guardar</button>-->
+  <div style="position: fixed; right: 20px; bottom: 20px;">
+    <button mat-button class="guardar-button" (click)="guardar()">
+      <mat-icon>save</mat-icon>
+      Guardar configuración
+    </button>
+  </div>
+
+
+
+  <br />
+  <br />
+  <br />
+  <br />
+
+</div>

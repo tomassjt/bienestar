@@ -1,0 +1,53 @@
+.mat-mdc-slider {
+  max-width: 300px;
+  width: 100%;
+}
+
+.containerDias {
+  display: flex; /* Usa flexbox para el diseño */
+  justify-content: space-around; /* Espacia los elementos equidistantemente */
+  align-items: center; /* Centra los elementos verticalmente */
+  padding: 20px; /* Espaciado interno del contenedor */
+  background-color: white; /* Color de fondo para mejor visualización */
+  height:200px; /* Altura completa de la ventana de visualización */
+}
+
+
+.dia {
+  background-color: #fff; /* Color de fondo blanco */
+  border-radius: 10px; /* Bordes redondeados */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra del cuadro */
+  padding: 16px; /* Espaciado interno */
+  transition: box-shadow 0.3s ease; /* Transición suave para el efecto hover */
+  width:130px;
+  height:220px;
+}
+
+  .dia:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Sombra más prominente al pasar el ratón */
+  }
+.unavailable {
+    color:black;
+  background-color: #d85050; /* Rojo claro */
+}
+
+.guardar-button {
+  border: 2px solid #1976d2; /* Color del borde */
+  background-color: transparent; /* Fondo transparente */
+  color: #1976d2; /* Color del texto e ícono */
+  padding: 8px 16px; /* Espaciado interno */
+  border-radius: 8px; /* Bordes redondeados */
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Espacio entre el icono y el texto */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+  .guardar-button:hover {
+    background-color: #1976d2; /* Fondo al hacer hover */
+    color: white; /* Color del texto e ícono al hacer hover */
+  }
+
+  .guardar-button mat-icon {
+    font-size: 20px;
+  }

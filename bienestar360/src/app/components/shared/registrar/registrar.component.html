@@ -1,0 +1,62 @@
+<div class="background-container">
+  <div class="sky-background" id="background"></div>
+  <div>
+    <div class="logoBienestar">
+      <img src="/assets/logos/logoSinFondo.png" alt="Logo de bienestar 360" />
+    </div>
+    <br />
+
+    <br />
+    <br />
+    <h4 style="text-align: center; color: #555; position: relative; top: -10px; ">BIENESTAR 360</h4>
+    <h5 style="text-align: center; color: #555; position: relative; top: -25px;">Nuestra pasión es apoyar a cada individuo </h5>
+  </div>
+  <form [formGroup]="formGrup">
+    <mat-card class="login-card" style="display:flex; flex-direction:row; width:30%; margin: 0 auto; justify-content:center; text-align:center; position:relative; top:-30px;">
+      <mat-card-content style="display:flex; flex-direction:column;">
+        <!-- Contenido del login -->
+        <h2 style="color:white;">Registrarse</h2>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Username</mat-label>
+          <input matInput placeholder="Enter your username" formControlName="usuario">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Password</mat-label>
+          <input matInput placeholder="Enter your password" type="password" formControlName="clave">
+        </mat-form-field>
+        <div style="display:flex;">
+          <label style="margin-right:5px; color:white;">¿Usted se registrará como profesional?</label>
+          <mat-slide-toggle class="example-margin"
+                            [checked]="checkedT"
+                            [disabled]="disabledT"
+                            (change)="esProfecionalCkech($event)">
+
+          </mat-slide-toggle>
+        </div>
+        <br />
+        @if(esProfesional){
+        <br />
+        <mat-form-field appearance="fill">
+          <mat-label>Especialidad</mat-label>
+          <input matInput placeholder="Ingrese su especialidad." style="font-size:12px;" type="text" formControlName="especialidad">
+        </mat-form-field>
+
+
+
+        <mat-form-field appearance="fill">
+          <mat-label>CUP</mat-label>
+          <input matInput placeholder="Ingrese su clave única para profesionales." style="font-size:12px;" type="password" formControlName="claveCUP">
+        </mat-form-field>
+        <br />
+        }
+
+
+
+        <button mat-raised-button color="primary" (click)=" registrarUsuario()"> {{esProfesional ? 'Registrar Profesional' : 'Registrar Usuario'}}</button>
+
+      </mat-card-content>
+    </mat-card>
+  </form>
+</div>

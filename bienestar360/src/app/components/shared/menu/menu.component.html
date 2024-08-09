@@ -1,1 +1,72 @@
-<p>menu works!</p>
+
+<div style="position:relative; z-index:10; top:0px;">
+  <button mat-icon-button [matMenuTriggerFor]="menu"
+          aria-label="Example icon-button with a menu"
+          style="position:relative; left:10px;">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="selectComponent('inicio')">
+      <mat-icon>home</mat-icon>
+      <span>Inicio</span>
+    </button>
+
+    <button mat-menu-item (click)="selectComponent('catalogo')">
+      <mat-icon>menu_book</mat-icon>
+      <span>Catálogo</span>
+    </button>
+    <button mat-menu-item (click)="selectComponent('turnos')">
+      <mat-icon>schedule</mat-icon>
+      <span>Turnos</span>
+    </button>
+    <button mat-menu-item (click)="selectComponent('profesionales')">
+      <mat-icon>people</mat-icon>
+      <span>Profesionales</span>
+    </button>
+    <button mat-menu-item (click)="selectComponent('faqs')">
+      <mat-icon>help_outline</mat-icon>
+      <span>FAQS</span>
+    </button>
+    <button mat-menu-item (click)="selectComponent('contacto')">
+      <mat-icon>contact_mail</mat-icon>
+      <span>Contacto</span>
+    </button>
+    <button mat-menu-item (click)="selectComponent('quienesSomos')">
+      <mat-icon>info</mat-icon>
+      <span>¿Quienes somos?</span>
+    </button>
+  </mat-menu>
+</div>
+
+<div style="padding:0px; position:relative; z-index:0; top:-70px;">
+
+  @switch (selectedComponent) {
+  @case ("inicio") {
+  <app-inicio></app-inicio>
+
+  }
+
+  @case ("catalogo") {
+  <app-catalogo></app-catalogo>
+
+  }
+  @case ("turnos") {
+  <app-turnos></app-turnos>
+
+  }
+  @case ("profesionales") {
+  <app-profesionales></app-profesionales>
+  }
+  @case ("faqs") {
+  <app-faqs></app-faqs>
+  }
+  @case ("contacto") {
+  <app-contacto></app-contacto>
+  }
+  @case ("quienesSomos") {
+  <app-quienes-somos></app-quienes-somos>
+  }
+  }
+
+</div>
+<app-footer style="position:relative; top:70px;"></app-footer>

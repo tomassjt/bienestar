@@ -1,0 +1,12 @@
+
+<mat-dialog-content class="mat-typography" style="background-color:white; width:400px; height:500px;">
+      <div class="card red">
+        <p class="tip btnReservar" style="color:#333; text-align:center; margin:0px;">Selecciona un Horario</p>
+        <input type="time" class="time-picker" [(ngModel)]="selectedTime">
+      </div>
+  </mat-dialog-content>
+  <mat-dialog-actions style="background-color:#99d4ea;">
+    <button mat-button class="btnReservar" [mat-dialog-close]="" style="background-color:#99d4ea;" (click)="reservar()">Reservar</button>
+  </mat-dialog-actions>
+
+ 

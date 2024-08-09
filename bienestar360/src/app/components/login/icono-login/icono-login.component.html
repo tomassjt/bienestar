@@ -1,0 +1,42 @@
+<div class="containerImg">
+  <img (click)="toggleMenu()" class="imgLogo" src='/assets/redes/icono login.png' alt="icono de login" />
+</div>
+ 
+<div id="sideMenu" class="side-menu" [ngClass]="{'open': isMenuOpen}">
+  <div class="menu-content">
+    <div style="width:100%; display:flex;">
+      <div>
+        <h2>Menú de sesión </h2>
+      </div>
+      <div style="position:relative; float:left; left:50px; top:-5px; margin:10px;">
+        <mat-icon (click)="toggleMenu()" style=" width:40px; height:40px; display:flex; margin:0 auto;">close</mat-icon>
+      </div>
+    </div>
+    @if(usuarioActual.id >= 1){
+    <h4 style="text-align:center; position:relative; opacity:80%;   color:#444; font-size:12px;">Session iniciada con usuario {{usuarioActual.nombre}} </h4>
+    <br />
+    <button (click)="irAInicioSession()" style="background-color: transparent; border: none; text-align: center; width: 100%; ">
+      <h4>Cambiar de usuario</h4>
+    </button>
+    <br />
+    <button (click)="cerrarSession()" style="background-color:transparent; border:none; text-align:center; width:100%; ">
+      <h4 style="text-align: center;">Cerrar Session</h4>
+    </button>
+
+    }
+    @else{
+    <button (click)="irAInicioSession()" style="background-color:transparent; border:none; ">
+      <h4>Iniciar Session</h4>
+    </button>
+    <br />
+    <button (click)="irARegistrar()" style="background-color:transparent; border:none; ">
+      <h4>Registrarse</h4>
+    </button>
+    }
+
+  </div>
+ 
+
+</div>
+
+

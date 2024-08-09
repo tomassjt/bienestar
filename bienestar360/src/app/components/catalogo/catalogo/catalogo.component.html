@@ -1,0 +1,84 @@
+<div class="container-all">
+  <br />
+  <br />
+  <app-icono-login></app-icono-login>
+  <!--<button (click)="abrirCarrito()">Carrito</button>-->
+  <div style="background-color:transparent; width: 100%; border-radius:8px; position:relative;  top:-30px; height: 70px; justify-content:center; align-content: center; text-align:center;">
+    <div style="position:relative; top:2px; ">
+      <h3 style="font-weight: 400; font-size: 45px; position: relative; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); text-align: initial; color: white; margin-left: 10px; top: 5px; ">Catalogo de productos</h3>
+
+
+      <!--<mat-form-field appearance="outline" style="    position: relative; float: right;  width: 400px; height: 30px;   left:-10px;  top:-8px;">
+        <input matInput placeholder="Buscar" style=" color:#333;  border: 1px solid black; color: black !important;" >
+
+        <button matSuffix mat-icon-button aria-label="Buscar" style="background-color:transparent; border:none; cursor:pointer; ">
+          <mat-icon>search</mat-icon>
+        </button>
+      </mat-form-field>-->
+
+
+    </div>
+  </div>
+
+  <div class="firstRow" style="width:100%; justify-content: center; ">
+    <app-product style="display:flex;"></app-product>
+  </div>
+
+
+
+
+  <div style="width:100%; height:150px; position:relative; top:80px; left:-10px; background-color:transparent; justify-content:center; align-content:center;">
+
+    <p style=" text-align: center; font-weight: 400; color: white; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); font-size: 48px; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+      Productos de Calidad. Garantizado.
+    </p>
+
+  </div>
+
+</div>
+<hr />
+<br />
+<div style="background-color: white; width: 100%; height: 500px; align-content: center; text-align:center;">
+  <div>
+    <h1 style="font-weight:600;"> CATEGORIAS </h1>
+    <app-categorias></app-categorias>
+  </div>
+</div>
+<br />
+<hr />
+
+
+<br />
+<div style="background-color: white; width: 100%; height: 500px; align-content: center; text-align:center;">
+  <div>
+    <h1 style="font-weight:600;"> Recomendados para ti</h1>
+    <div class="firstRow" style="width:100%; justify-content: center; ">
+      <app-product style="display:flex;"></app-product>
+    </div>
+
+  </div>
+
+</div>
+<hr />
+<br />
+
+<br />
+<div style="background-color: white; width: 100%; height: 500px; align-content: center; text-align:center;">
+  <div>
+    
+    <div>
+      <app-carrousel></app-carrousel>
+    </div>
+  </div>
+</div>
+<br />
+
+<br />
+<hr />
+<div style="background-color: white; width: 100%; min-height: 500px; height:auto; align-content: center; text-align:center;">
+  <div>
+  <app-galeria></app-galeria>
+  </div>
+</div>
+<hr />
+<br />

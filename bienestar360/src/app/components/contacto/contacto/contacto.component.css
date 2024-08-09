@@ -1,0 +1,102 @@
+.container-all {
+  height: 100%;
+  min-height: 600px;
+  background-color: black;
+  background-image: url('/assets/backgrounds/fondoContactos.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 30px 10px 10px 30px;
+}
+mat-card-content {
+  position: relative;
+  z-index: 0;
+  background-color: transparent;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+mat-card {
+  position: relative;
+  z-index: 0;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+h2 {
+  font-size: 26px;
+  font-weight: bold;
+  color: white;
+}
+
+.mat-card-content div p{
+  position: relative;
+  z-index: 1; /* Asegura que el contenido esté por encima del fondo */
+  color:white;
+  opacity:1 !important;
+}
+
+.contenedor{
+    background-color:transparent;
+    opacity:0.4;
+}
+
+.map-container {
+  width: 80%;
+  margin: 0 auto;
+  height: 350px;
+  border: 1px solid #ccc;
+}
+iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.contact-section {
+  width: 80%;
+  margin: 0 auto;
+  padding: 40px 0;
+  text-align: center;
+}
+
+  .contact-section h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    text-align:initial;
+    float:right
+  }
+
+  .contact-section p {
+    font-size: 1.2em;
+    margin-bottom: 40px;
+  }
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+
+  .form-group input, .form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+button {
+  padding: 10px 20px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+  button:hover {
+    background-color: #0056b3;
+  }

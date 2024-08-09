@@ -1,0 +1,10 @@
+.conteinerAll {
+  padding-top: 60px;
+  height: 600px;
+  max-height:600px;
+ 
+  background-image: url('/assets/backgrounds/fondoFamilia.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}

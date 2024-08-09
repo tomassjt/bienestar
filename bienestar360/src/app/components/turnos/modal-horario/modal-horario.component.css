@@ -1,0 +1,19 @@
+.time-picker {
+  font-size: 4.2em;
+  width: 100%; 
+}
+
+.btnReservar{
+    width:100%;
+    height:40px;
+    font-weight:600;
+
+}
+
+.textUnderClock{
+    font-size:50px;
+    font-weight:600;
+    color:#333;
+    text-align:center;
+    
+}

@@ -1,0 +1,52 @@
+.imgLogo {
+  width: 40px;
+  height: 40px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+   border-radius:50%;
+   position:relative;
+   top:-1px;
+}
+
+.containerImg {
+  width: 40px;
+  height: 40px;
+  background-color: white;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  float: right;
+  margin: 10px;
+  top: -30px;
+  transition: all 0.3s ease; /* Añade una transición suave */
+}
+
+  .containerImg:hover {
+    transform: scale(1.025); /* Agranda el div en 2.5% */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Añade una sombra */
+    cursor: pointer;
+  }
+
+.side-menu {
+  position: fixed;
+  top: 0;
+  right: -50%; /* Inicia oculto fuera de la pantalla */
+  width: 20%; /* Ancho del menú */
+  height: 100vh; /* Altura total de la pantalla */
+  background-color: #fff; /* Fondo blanco */
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5); /* Sombra en el borde izquierdo */
+  transition: right 0.3s ease; /* Transición suave al mostrar/ocultar */
+  z-index: 1000; /* Asegura que esté sobre otros elementos */
+  opacity:0.8;
+}
+
+.menu-content {
+  padding: 20px;
+}
+
+.side-menu.open {
+  right: 0; /* Muestra el menú desplazándolo a la posición correcta */
+}

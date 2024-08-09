@@ -1,0 +1,11 @@
+@for (product of productos; track product) {
+<div class="product">
+  <img class="imgProducto" src='{{product.imagen}}' alt="Foto de producto" />
+  <h4 class="titulo">{{ product.titulo }}</h4>
+  <p class="subtitulo">{{ product.subtitulo }}</p>
+  <button class="btnDetalles" (click)="verDetalles(product)">Ver detalles</button>
+</div>
+}
+
+
+

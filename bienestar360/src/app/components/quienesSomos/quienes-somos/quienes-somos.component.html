@@ -1,0 +1,62 @@
+<div class="container-all">
+
+  <br />
+  <br />
+  <h4 style="font-size:24px; font-weight:300;">¿Quienes somos?</h4>
+  <br />
+  <mat-card>
+    <mat-card-content style="position:relative; z-index:10; opacity:1; color:black;">
+      <div style="text-align:center;">
+        <h4 style="font-size: 24px; font-weight: 300;">
+          Misión de Bienestar 360
+        </h4>
+      </div>
+      <p>
+        En Bienestar 360, nos dedicamos a ser un faro de salud y vitalidad en nuestra comunidad. Nuestra misión es proporcionar un enfoque completo y equilibrado para la salud, abarcando desde la prevención y el acompañamiento de hábitos alimenticios hasta el apoyo a atletas de alto rendimiento.
+      </p>
+      <br />
+      <p>
+        Nos comprometemos a ofrecer productos y servicios de la más alta calidad, basados en principios orgánicos y naturales, para promover la prevención, el seguimiento y la recuperación de diversas condiciones, de manera segura y efectiva, impulsando la salud y el bienestar en cada paso del camino, incluyendo la superación de malos hábitos alimenticios.
+      </p>
+      <br />
+      <p>
+        En Bienestar 360, nuestra pasión es apoyar a cada individuo,  en su búsqueda de una vida plena, equilibrada y saludable.
+      </p>
+    </mat-card-content>
+  </mat-card>
+  <br />
+  <br />
+  <mat-card>
+    <mat-card-content>
+      <div>
+        <h4>
+          Nuestra Visión
+        </h4>
+      </div>
+      <p>
+        Aspiramos a ser líderes en la promoción del bienestar integral, combinando innovación, conocimiento y compasión. Nuestro objetivo es crear una comunidad donde cada persona tenga acceso a las herramientas y el apoyo necesarios para vivir una vida saludable y equilibrada.
+      </p>
+      <br />
+
+
+    </mat-card-content>
+  </mat-card>
+  <br />
+  <hr style="color: white; width: 50%;" />
+
+  <mat-grid-list cols="4" rowHeight="200px" class="grid-container">
+    @for (word of words; track word) {
+    <mat-grid-tile class="grid-tile">
+      <div class="tile-content">
+        <p>
+          {{ word }}
+        </p>
+      </div>
+    </mat-grid-tile>
+    }
+  </mat-grid-list>
+  <hr style="color:white; width:50%;" />
+</div>
+
+
+

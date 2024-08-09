@@ -1,0 +1,24 @@
+ <div>
+ 
+  <div class="calendario-container">
+    <div class="dias-semana">
+      <p>Lunes</p>
+      <p>Martes</p>
+      <p>Miércoles</p>
+      <p>Jueves</p>
+      <p>Viernes</p>
+      <p>Sábado</p>
+    </div>
+    <div class="dias-mes  loader" style="margin-bottom:10px;">
+      @for(dia of dias; track dia.numero){
+      <div class="dia " (click)=" openDialog(dia)">
+
+        <p class="numero-dia">{{ dia.numero }}</p>
+      
+
+      </div>
+      }
+    </div>
+  </div>
+
+</div>

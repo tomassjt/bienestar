@@ -1,0 +1,91 @@
+.iconContainer {
+  width: 50px;
+  height: 50px;
+  background-color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;  
+  top: 10px; 
+  left: 10px;  
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);  
+  transition: transform 0.3s ease;
+}
+
+  .iconContainer:hover {
+    transform: scale(1.1);  
+  }
+
+.arrow {
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-right: 10px solid black;  
+}
+ 
+.product-container {
+  display: flex;
+  justify-content: flex-end; /* Alinea el contenido a la derecha */
+  align-items: center; /* Centra verticalmente, opcional */
+  width: 100%;
+  height: 100%;
+  color: red; /* Si deseas mantener el color del texto */
+}
+
+.imgProducto {
+  max-width: 100%; /* Ajusta el tamaño máximo de la imagen */
+  height: auto; /* Mantiene la proporción de la imagen */
+}
+.titulo{
+    display:flex;
+    margin:0 auto;
+    text-align:center;
+    font-size:22px;
+    color:black;
+}
+
+mat-expansion-panel-header, mat-panel-description {
+  background-color:white;
+  color:#333;
+  height:60px;
+}
+.icon-container {
+ width:120px;
+ height:50px;
+}
+
+.custom-icon {
+  font-size: 25px; /* Tamaño del icono */
+  margin: 5px; /* Margen de 10px entre los dos iconos */
+}
+.custom-icon:hover{
+    cursor:pointer;
+}
+mat-expansion-panel{
+    background-color:white;
+}
+.vertical-menu {
+  font-family: Arial, sans-serif; /* Establece una fuente genérica */
+  background-color: #f9f9f9; /* Color de fondo gris claro */
+  padding: 20px; /* Espaciado interno */
+}
+
+.menu-section {
+  margin-bottom: 20px; /* Espacio entre secciones */
+}
+
+.menu-title {
+  color: #555; /* Color de texto gris */
+  font-weight: bold; /* Texto en negrita */
+  margin-bottom: 10px; /* Espacio inferior */
+}
+
+.vertical-menu p {
+  margin: 0; /* Elimina el margen predeterminado de los párrafos */
+  padding-left: 10px; /* Espacio izquierdo para alinear con los títulos */
+  font-size: 14px; /* Tamaño de fuente */
+  line-height: 1.5; /* Altura de línea para mejorar la legibilidad */
+}

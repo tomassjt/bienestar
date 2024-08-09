@@ -1,0 +1,17 @@
+
+<div class="conteinerAll">
+
+  <app-icono-login></app-icono-login>
+  <div style=" display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100px; position: relative; top: 180px;">
+    <img style="width:120px; height:120px;" src="/assets/logos/logoSinFondo.png" alt="Logo de bienestar 360" />
+    <h4 style="text-align: center; color: white; font-weight: 400; margin-top:10px; font-size:30px;">BIENESTAR 360</h4>
+    <h5 style="text-align: center; color: white; font-weight: 300; font-size: 20px; position: relative; ">Nuestra pasión es apoyar a cada individuo </h5>
+    @if(usuarioActual.id >= 1){
+    <h4 style="text-align:center; position:relative; opacity:50%;   color:white;">Bienvenido {{usuarioActual.nombre}} !</h4>
+
+    }
+  </div>
+
+</div>
+ 
+

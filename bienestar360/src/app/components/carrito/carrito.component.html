@@ -1,0 +1,70 @@
+<div class="iconContainer" (click)="volver()">
+  <span class="arrow"></span>
+</div>
+<br />
+<br />
+<br />
+<br />
+
+<div style="margin-left: 20px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.4); width:98%;">
+  @for(prod of productos; track prod.id){
+  <div style="margin:5px">
+
+    <div style="width: 100%; background-color: white; display:flex; width:90%; margin-left:20px; padding:10px;">
+      <div class="columnaCarrito">
+        <img class="imgProdLista" src='{{prod.imagen}}' alt="Foto de producto {{prod.titulo}}" />
+      </div>
+      <div class="columnaCarrito" style="font-size:20px;">
+        <p> Producto:{{prod.titulo}}     </p>
+      </div>
+      <div class="columnaCarrito">
+        <button (click)="quitarProducto(prod)">-</button>
+        <p style="margin:5px 5px 5px 5px">  Cantidad:{{prod.cantidad}}</p>
+        <button (click)="agregarProducto(prod)">+</button>
+      </div>
+      <div class="columnaCarrito" style="font-size:20px;">
+        ${{prod.precio}}
+      </div>
+
+
+
+    </div>
+
+  </div>
+  }
+</div>
+@if(!carritoVacio){
+<div style="margin-left:20px; margin-top:20px;">
+  <button (click)="vaciarCarrito()" style="font-size:12px;">Vaciar Carrito</button>
+  <button (click)="vaciarCarrito()" style="font-size:12px;">Confirmar compra</button>
+  <div style="font-size:30px; position:relative; float:right; margin-right:30px; display:flex; flex-direction:column;">
+    <h4 style="font-size:20px;">Total</h4>
+ 
+    <h4 style="font-size:20px; position:relative; top:-10px;">
+     ${{costoTotal}}
+    </h4>
+  </div>
+</div>
+}
+
+@else{
+<div  class="conteinerCarritoVacio">
+  <img class="imgCartera" src='/assets/carrito/carterabienestar360.png' alt="imagen de cartera carrito vacio" />
+  <h4>Parece que andas seco, ¿O todavía no te decidiste a comprar nada?. Animate, no tevas a arrepentir!.</h4>
+  <h4 style="color:#2f2e2e;">¡Empezá un carrito de compras!</h4>
+  <p style="color:#444;">Sumá productos y conseguí envío gratis.</p>
+  
+  <button  mat-flat-button (click)="irAlCatalogo()">Descubrir Productos</button>
+</div>
+
+}
+<br />
+<br />
+<hr />
+<!--garantia-->
+<div style="background-color: snow; min-height: 250px; height: auto; width: 100%;">
+  <img class="" style="display:flex; margin:0 auto;" src='/assets/profesionales/profeesional 2.png' alt="profesional 2" />
+ 
+</div>
+<!--footer-->
+<app-footer style="position:relative; top:70px;"></app-footer>

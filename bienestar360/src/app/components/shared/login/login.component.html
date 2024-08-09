@@ -1,0 +1,32 @@
+<div class="background-container">
+  <div class="sky-background" id="background"></div>
+  <div>
+    <div class="logoBienestar">
+      <img src="/assets/logos/logoSinFondo.png" alt="Logo de bienestar 360" />
+    </div>
+    <br />
+    <br />
+    <br />
+    <h4 style="text-align:center; color:#555;">BIENESTAR 360</h4>
+    <h5 style="text-align: center; color: #555; position: relative; top: -15px;">Nuestra pasión es apoyar a cada individuo </h5>
+  </div>
+  <form [formGroup]="formGrup">
+    <mat-card class="login-card" style="display:flex; flex-direction:row; width:30%; margin: 0 auto; justify-content:center; text-align:center; position:relative; top:-10px;">
+      <mat-card-content style="display:flex; flex-direction:column;">
+        <!-- Contenido del login -->
+        <h2 style="color:white;">Login</h2>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Username</mat-label>
+          <input matInput placeholder="Enter your username" formControlName="usuario">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Password</mat-label>
+          <input matInput placeholder="Enter your password" type="password" formControlName="clave">
+        </mat-form-field>
+        <button mat-raised-button color="primary" (click)=" irAlInicio()"> {{usuarioNoExiste?  "Debe registrarse": "Login" }}</button>
+
+      </mat-card-content>
+    </mat-card>
+  </form>
+</div>

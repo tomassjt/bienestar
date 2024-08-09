@@ -1,0 +1,132 @@
+
+<div style="top:20px; min-height:300px; height:auto; margin-bottom:10px;">
+
+  <br />
+  
+  <div class="calendar-container">
+    <mat-card class="calendar-card">
+      <!--<button (click)="verificarExistenciaDeTurnos()">Consultar Turnos</button>-->
+      <mat-card-title style="margin:10px;">Reserva una cita</mat-card-title>
+
+      @if(listadoDeProfesionales.length > 0)
+      {
+      <mat-card-content>
+        <mat-stepper class="demo-stepper" #stepper>
+          <div style="display: flex; flex-direction: row; flex-wrap: nowrap;">
+            <mat-step [stepControl]="firstFormGroup">
+              <div style="display:flex; flex-direction:row; ">
+                <form [formGroup]="firstFormGroup">
+                  <ng-template matStepLabel>Seleccionar especialidad y profesional</ng-template>
+
+                  <mat-form-field style="width:250px;">
+                    <mat-label style="margin-bottom:20px;">Seleccionar especialidad</mat-label>
+
+                    <mat-select formControlName="especialidad" panelClass="custom-select-panel">
+                      @for(p of listadoDeProfesionales ; track p.id){
+                      <mat-option value="{{p.especialidad}}">{{p.especialidad}}</mat-option>
+                      }
+                    </mat-select>
+                  </mat-form-field>
+
+
+
+                  <mat-form-field style="margin-left:10px;">
+                    <mat-label style="margin-bottom:20px;">Seleccione un profesional</mat-label>
+                    <mat-select formControlName="profesional">
+                      @for(p of listadoDeProfesionales ; track p.id){
+                      <mat-option value="{{p.nombre}}">{{p.nombre}}</mat-option>
+                      }
+                    </mat-select>
+                  </mat-form-field>
+
+
+
+
+
+                </form>
+              </div>
+
+
+              <button mat-button matStepperPrevious>Anterior</button>
+              <button mat-button matStepperNext>Siguiente</button>
+
+            </mat-step>
+          </div>
+          <mat-step [stepControl]="secondFormGroup"
+                    label="Una fecha y horario"
+                    optional>
+
+            <div style="display: flex; flex-direction: row; ">
+              <form [formGroup]="secondFormGroup">
+
+                <mat-form-field class="example-full-width">
+                  <mat-label>Elija una fecha</mat-label>
+                  <input matInput formControlName="fecha" [matDatepicker]="picker" placeholder="dd/mm/aaaa">
+                  <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+
+                <p style="color:white;  ">Horario</p>
+                <input type="time" class="time-picker" matInput formControlName="hora">
+              </form>
+            </div>
+
+            <div>
+              <button mat-button matStepperPrevious>Anterior</button>
+              <button mat-button matStepperNext>Siguiente</button>
+            </div>
+
+          </mat-step>
+          <mat-step>
+            <ng-template matStepLabel>Ultimo paso</ng-template>
+            <p style="color:white; font-size:18px; margin:27px; font-weight:600; ">Todo correcto, listo para reservar tu turno.</p>
+            <div>
+              <button mat-button matStepperPrevious>Anterior</button>
+              <!--<button mat-button (click)="stepper.reset()">Reset</button>-->
+              <button mat-button (click)="mostrarCalendario()" [disabled]="firstFormGroup.invalid || secondFormGroup.invalid"> {{(firstFormGroup.invalid || secondFormGroup.invalid)? "Formularios incompletos"  : "Reservar"}} </button>
+            </div>
+          </mat-step>
+        </mat-stepper>
+
+      </mat-card-content>
+      }
+      @else{
+      <div style="display: flex; position: relative; top:70px; font-size:20px; margin: 0 auto; background-color: white; color: #333; ">
+        <mat-card-content>
+          <label style="">Ups!. Lo sentimos 😔,No hay profesionales disponibles.</label>
+        </mat-card-content>
+      </div>
+      }
+    </mat-card>
+   
+
+  </div>
+  @if(habilitarCalendario){
+  <div id="calendar" style="padding-left:20px; width:100%; height:570px; background-color:white; margin-bottom:30px;">
+
+    <h2 style="text-align:center; margin-top:20px;">Genial! se reservo tu turno con exito.</h2>
+    <br />
+    @if(existenTurnos){
+    <div style="width:100%; height:540px; background-color:white; ">
+      <h1>Usted tiene {{this.turnos.length}} turnos reservados</h1>
+      @for(turno of turnos; track turno.numero){
+      <div>
+        <h3>Especialidad: {{turno.especialidad}} con el profesional:  {{turno.profesional}} Fecha: {{formatearFecha(turno.fecha)}}  a las {{turno.horario}}  </h3>
+
+      </div>
+      }
+    </div>
+    }
+
+    <!--<app-calendario [turno]="turno"></app-calendario>-->
+
+  </div>
+  }
+  <br />
+  <hr />
+  <br />
+
+
+
+</div>
+

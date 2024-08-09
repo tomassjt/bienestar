@@ -1,0 +1,141 @@
+<div class="iconContainer" (click)="volver()">
+  <span class="arrow"></span>
+</div>
+<br />
+<p style="text-align:center; font-size:30px;"> {{producto.titulo}}</p>
+<br />
+<br />
+
+  <mat-grid-list cols="4" >
+    <mat-grid-tile [colspan]="1" [rowspan]="1" style="background-color: white;">
+      <div class="vertical-menu">
+        <div class="menu-section">
+          <h4 class="menu-title">MÁS PRODUCTOS</h4>
+          <p>Daily +</p>
+          <p>Suplementos Nutricionales</p>
+          <p>Nutrición Balanceada</p>
+          <p>Accesorios</p>
+          <p>Naturalmente Irresistibles</p>
+        </div>
+        <div class="menu-section">
+          <h4 class="menu-title">POR MARCA</h4>
+          <p>BodyKey</p>
+          <p>Nutrilite</p>
+        </div>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <div class="product-container">
+        <img class="imgProducto" src="{{producto.imagen}}" alt="Foto de producto" />
+      </div>
+    </mat-grid-tile>
+
+    <mat-grid-tile style="background-color: white;">
+     
+      <div style="margin-left:10px;">
+        <h4>{{producto.titulo}}</h4>
+        <p>{{producto.subtitulo}}</p>
+        <br />
+        <!--<p>{{producto.precio}}</p>-->
+        <br />
+        <p>
+          Suplementa dietas insuficientes. Consulte a su médico y/o Farmacéutico.
+        </p>
+        <div class="icon-container">
+          <!--<mat-icon class="custom-icon">print</mat-icon>
+          <mat-icon class="custom-icon">cloud_download</mat-icon>-->
+        </div>
+        <!--<button mat-raised-button class="custom-button" (click)="agregarAlCarrito(producto)">
+          Agregar
+          <mat-icon class="icon-spacing">shopping_cart</mat-icon>
+        </button>-->
+      </div>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+      <div style="display:flex; flex-direction:column;">
+        <div style="height: 200px; width:90%;   display: flex; flex-direction: column; justify-content: center; align-items: center;">    
+            <!--<a href="https://www.linkedin.com/" style="margin: 20px;">
+              <img class="imgLogoRed" src='/assets/redes/icono de linkedin.png' alt="logo de linkedin" />
+            </a>
+            <a href="https://x.com/" style="margin: 20px;">
+              <img class="imgLogoRed" src='/assets/redes/icono de x.png' alt="logo de x" />
+            </a>-->
+            <a href="https://www.instagram.com/" style="margin: 20px;">
+              <img class="imgLogoRed" src='/assets/redes/icono de instagram.png' alt="icono de instagram" />
+            </a>
+          </div>        
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+
+  <div style="width: 100%; background-color: white; height: 400px; margin-top: 40px;">
+    <h4 style="font-size:30px;">Características del producto</h4>
+
+    <mat-accordion style=" background-color:white; ">
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <p class="titulo">Beneficios</p>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-panel-description>
+          <p class="contenido">
+            {{producto.beneficios}}
+          </p>
+        </mat-panel-description>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <p class="titulo">Instrucciones de uso </p>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-panel-description>
+          <p class="contenido">
+            {{producto.instruccionesDeUso}}
+          </p>
+        </mat-panel-description>
+
+
+      </mat-expansion-panel>
+
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <p class="titulo">
+              Preguntas frecuentes
+            </p>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-panel-description>
+          <p class="contenido">
+            {{producto.preguntasRespuestas}}
+          </p>
+        </mat-panel-description>
+
+
+      </mat-expansion-panel>
+
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <p class="titulo">
+              Advertencias
+            </p>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-panel-description>
+          <p class="contenido">
+            {{producto.advertencias}}
+          </p>
+        </mat-panel-description>
+
+
+      </mat-expansion-panel>
+    </mat-accordion>
+
+  </div>
+
+<app-footer></app-footer> 

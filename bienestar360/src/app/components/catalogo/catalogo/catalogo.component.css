@@ -1,0 +1,25 @@
+.container-all {
+  height: 100%;
+  min-height: 800px;
+  background-color: #a5ff9b;
+  background-image: url('/assets/backgrounds/catalogo.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 30px 10px 10px 30px;
+}
+
+.firstRow{
+    display:flex !important;
+    gap:5px;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline {
+  color: rgba(0, 0, 0, 0.12); /* Color gris claro */
+  color: black;
+}
+
+
+.mat-form-field-appearance-outline .mat-input-element {
+  color: black; /* Color del texto */
+}

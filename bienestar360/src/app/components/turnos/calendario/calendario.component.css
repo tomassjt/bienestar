@@ -1,0 +1,124 @@
+.calendario-container {
+  max-width: 1200px;
+  max-height: 550px;
+  height: 100%; /* Ajustar altura al contenido */
+  width: 100%; /* Ajustar ancho al contenido */
+  display: flex;
+  flex-direction: column;
+  background-color: #f0f0f0;
+  margin: 0 auto;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+    /* Para evitar que los elementos se desborden */
+}
+
+.time-picker {
+  font-size: 30px;
+  font-family: 'Courier New', Courier, monospace;
+  color: #0ff;
+  background-color: black;
+  border: 2px solid #0ff;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 0 0 5px #0ff, 0 0 10px #0ff, 0 0 20px #0ff, 0 0 40px #0ff;
+  text-align: center;
+}
+
+  .time-picker:focus {
+    outline: none;
+    box-shadow: 0 0 5px #0ff, 0 0 10px #0ff, 0 0 20px #0ff, 0 0 40px #0ff;
+  }
+
+.dias-semana {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 100px;
+  background-color: #ffffff;
+  color: #333333;
+  font-weight: bold;
+  border-bottom: 1px solid #ccc;
+}
+
+.dias-mes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  height: calc(100% - 100px); /* Altura restante después de los días de la semana */
+  overflow-y: auto; /* Activar scroll vertical si es necesario */
+  padding: 10px;
+  overflow-y:hidden;
+}
+
+.dia {
+  background-color: #99d4ea;
+  width: calc(100% / 7 - 20px); /* Distribuir los días en 7 columnas con margen */
+  height: calc(400px / 5 - 20px); /* Distribuir los días en 5 filas con margen */
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-radius: 8px;
+  transition: transform 0.8s;
+}
+
+  .dia:hover {
+    transition: transform 0.3s;
+    transform: translateY(-5px);
+    background-color: #6bb4cf;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+  }
+
+ 
+
+.numero-dia {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.nombre-dia {
+  font-size: 14px;
+  margin-top: 4px;
+}
+.loader {
+  position: relative;
+ 
+  margin-bottom: 10px;
+  border: 1px solid #d3d3d3;
+  padding: 15px;
+  background-color: #e3e3e3;
+  overflow: hidden;
+}
+
+  .loader:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: linear-gradient(110deg, rgba(227, 227, 227, 0) 0%, rgba(227, 227, 227, 0) 40%, rgba(227, 227, 227, 0.5) 50%, rgba(227, 227, 227, 0) 60%, rgba(227, 227, 227, 0) 100%);
+    animation: gradient-animation_2 1.2s linear infinite;
+  }
+
+  .loader .wrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+    .loader .wrapper > div {
+      background-color: #cacaca;
+    }
+@keyframes gradient-animation_2 {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}
