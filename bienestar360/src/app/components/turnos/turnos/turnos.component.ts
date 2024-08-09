@@ -33,12 +33,13 @@ import { UsuariosService } from '../../../services/usuarios.service';
   styleUrl: './turnos.component.css'
 })
 export class TurnosComponent implements OnInit {
+  date:Date = new Date();
   listadoDeProfesionales: Profesional[] = new Array();
 
   reservedDates: Date[] = [];
   selectedTime: Time | undefined;
 
-  turno: Turno = new Turno();
+  turno: any= new Turno();
   turnos: Turno[] = new Array();
   habilitarCalendario: boolean = false;
   optionalLabelText: any;
@@ -50,9 +51,36 @@ export class TurnosComponent implements OnInit {
   });
   secondFormGroup = this._formBuilder.group({
     fecha: [null, Validators.required],
-    hora: [null, Validators.required]
+   /* hora: [null, Validators.required],*/
+    hora: ["", Validators.required],
   });
 
+ 
+
+
+  filtrarFechas = (d: Date | null): boolean => {
+    const fechasBloqueadas: Date[] = [
+      //new Date(2024, 7, 19),  // asi puedo poner fechas para bloquearlas
+    ];
+
+    if (!d) return true;
+
+    const day = d.getDay();
+    const time = d.getTime();
+
+    // Bloquear si es sábado (6) o domingo (0)
+    const esFinDeSemana = day === 0 || day === 6;
+
+    // Bloquear si la fecha está en fechasBloqueadas o si es sábado o domingo
+    return !esFinDeSemana && !fechasBloqueadas.some(fecha => fecha.getTime() === time);
+  }
+
+  nodisponible(horario: any): string {
+   
+    var r = horario + " No disponible";
+  return r;
+}
+  
 
   thirdFormGroup = this._formBuilder.group({
     fecha: ['', Validators.required],
@@ -62,10 +90,14 @@ export class TurnosComponent implements OnInit {
   fecha: Date | undefined = undefined;
 
   especialidad: string = "";
-  horario: Time | undefined;
+  horario: string | undefined;
+  numeroDeTurno: number = -1;
   existenTurnos: boolean = false;
   nombreUsuario: string = "Tomás J. Tomé"
   usuarioActual: Profesional = new Profesional();
+  listadeTurnosDelDia: Turno[]= new Array();
+  profesionalElegido: Profesional = new Profesional();
+
   ngOnInit() {
     //obtenemos los datos preliminares como el usuario actual y la lista de profesionales
     this.obtenerListadoDeProfesionales();
@@ -81,19 +113,23 @@ export class TurnosComponent implements OnInit {
     this.firstFormGroup.get('profesional')?.valueChanges.subscribe(value => {
       console.log('El valor de firstCtrl ha cambiado:', value);
       if (value)
-        this.profesional = value;
+        this.profesional = value; 
     });
 
     this.secondFormGroup.get('fecha')?.valueChanges.subscribe(value => {
       console.log('El valor de fecha ha cambiado:', value);
       if (value)
         this.fecha = value;
+        
+      this.buscarTurnosDelDiaElegido();
     });
 
     this.secondFormGroup.get('hora')?.valueChanges.subscribe(value => {
       console.log('El valor de hora ha cambiado:', value);
       if (value)
         this.horario = value;
+      if (this.horario)
+      this.numeroDeTurno = parseInt(this.horario.split('-')[0].trim(), 10);
     });
   }
   constructor(
@@ -127,7 +163,25 @@ export class TurnosComponent implements OnInit {
     console.log("lo que va del turno", this.turno);
   }
 
-
+  //esta funcion busca los turnos del profesional elegido, en el dia elegido y
+  //los usa para completar el listado de horarios de ese dia
+  buscarTurnosDelDiaElegido() {
+    //primero vemos quien es el
+    console.log("buscando profesional", this.profesional, " para obtener los turnos del dia ", this.fecha?.getDate());  
+    var pro: Profesional | undefined = this.listadoDeProfesionales.find((p) => p.nombre == this.profesional);
+    if (pro != undefined) {
+      this.profesionalElegido = pro;
+    }
+    console.log("busco entre los dias del profesional", this.profesionalElegido )
+    var a = this.profesionalElegido.dias.find(d => d.dia.numero == this.fecha?.getDate())?.turnos;
+    //ahora con ese buscamos los turnos que tenga disponibles
+    if (a != undefined) { 
+      this.listadeTurnosDelDia = a;
+      console.log("turnos disponibilizados por ese profesional", this.listadeTurnosDelDia);
+    }
+    
+     
+  }
 
   isSameDay(d1: Date, d2: Date): boolean {
     return d1.getFullYear() === d2.getFullYear() &&
@@ -151,18 +205,18 @@ export class TurnosComponent implements OnInit {
     this.turno.fecha = this.fecha;
     this.turno.nombreUsuario = this.nombreUsuario;
     this.turno.nroProfesional = 1;
-    console.log("lo que va del turno", this.turno);
-    console.log("turno completo", this.turno);
+    this.turno.numero = this.numeroDeTurno;
     console.log("turno completo", this.turno);
     this.usuarioActual.dias.push(this.turno);
-    this.estadoService.actualizarEnCache(this.usuarioActual);
-    this.turnosService.insertarTurno(this.turno);
-
+    this.usuariosService.actualizarProfesional(this.usuarioActual); //almaceno en storage local y actualizo
+    this.estadoService.actualizarEnCache(this.usuarioActual); //actualizo usuario actual
+    this.turnosService.insertarTurno(this.turno);//this obsolet when finish all the code.
+    this.usuariosService.reservarTurno(this.profesionalElegido, this.usuarioActual, this.turno); //reservamos el turno
+    this.buscarTurnosDelDiaElegido();//debemos volver a recargar la lista de turnos del dia, asi se actualiza con el que ocupamos 
     this.habilitarCalendario = true;
+    this.verificarExistenciaDeTurnos();
     setTimeout(() => {
-      this.verificarExistenciaDeTurnos();
       const targetElement = document.getElementById("calendar");
-
       if (targetElement) {
         const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY;
         this.smoothScroll(window, targetPosition, 1000); // Desplazar en 1000ms
@@ -221,6 +275,15 @@ export class TurnosComponent implements OnInit {
       return "";
     }
   }
+
+  recortarYFormatearFecha(fecha: any): string {
+    var fechaFormateada = "";
+    const anio = fecha.slice(0, 4);
+    const mes = fecha.slice(5, 7);
+    const dia = fecha.slice(8, 10);
+    fechaFormateada = `${dia}-${mes}-${anio}`;
+    return fechaFormateada;
+  }
   //creo una funcion apra obtener el listado de profesionales
   //para poder obtener los listados de especialidades y
   //profesionales en si 
@@ -229,6 +292,11 @@ export class TurnosComponent implements OnInit {
         this.listadoDeProfesionales = prof.filter((p) => p.esProfesional == true);
         console.log("Listado de profesionales:", this.listadoDeProfesionales);
     });
+  }
+
+  mostrarTurnos() {
+    this.habilitarCalendario = true;
+    this.existenTurnos = true;
   }
 
   precargaDeEspecialidades() {

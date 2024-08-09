@@ -93,6 +93,7 @@ export class RegistrarComponent implements OnInit {
       if (r.length > 0) {
         console.log(r)
         console.log("registrado con exito");
+        this.router.navigate(['login']);
       }
     });
 

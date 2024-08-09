@@ -37,7 +37,7 @@ import { EstadoService } from '../../services/estado.service';
 })
 export class AdministracionComponent implements OnInit {
   diaSeleccionado: diaDeCalendario = new diaDeCalendario();
-  turnosDelMes: diaDeCalendario[] = new Array();
+  turnosDelMes: diaDeCalendario[]  = new Array();
 
   ngOnInit() {
     this.profesional.nombre = "Tomas J. Tome";
@@ -51,8 +51,8 @@ export class AdministracionComponent implements OnInit {
     this.diaSeleccionado.mes.numero = this.mes;
     this.diaSeleccionado.anio.numero = this.anio;
     this.diaSeleccionado.profesionalId = this.profesional.id;
-    this.turnosDelMes = this.cacheTurnosService.obtenerDeCache();
- 
+    //this.turnosDelMes = this.cacheTurnosService.obtenerDeCache();
+    this.turnosDelMes = this.usuarioService.obtenerTurnosDeProfesional(this.usuarioActual.id);
 
 
   }
@@ -101,6 +101,9 @@ export class AdministracionComponent implements OnInit {
   dataSource: Turno[] = [];
   profesional: Profesional = new Profesional();
 
+  getPacienteyHorario(r: string) {
+    return " Paciente:" + r;
+  }
   cambiarSemana(nuevaSemana: any) {
     //console.log("entro")
     this.semanaSeleccionada = nuevaSemana;
@@ -217,10 +220,13 @@ export class AdministracionComponent implements OnInit {
     }
     console.log(this.turnosDelMes);
     this.guardarTurnosEnCache(this.turnosDelMes);
+  
   }
 
   guardarTurnosEnCache(turnos: diaDeCalendario[]): void {
     this.cacheTurnosService.guardarEnCache(turnos);
+    this.usuarioActual.dias = turnos;
+    this.usuarioService.actualizarProfesional(this.usuarioActual);
   }
 
   obtenerNombreDiaSemana(dia: number): string {

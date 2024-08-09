@@ -61,13 +61,24 @@
 
                 <mat-form-field class="example-full-width">
                   <mat-label>Elija una fecha</mat-label>
-                  <input matInput formControlName="fecha" [matDatepicker]="picker" placeholder="dd/mm/aaaa">
+                  <input matInput formControlName="fecha" [matDatepickerFilter]="filtrarFechas" [min]="date" [matDatepicker]="picker" placeholder="dd/mm/aaaa">
                   <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                  <mat-datepicker #picker></mat-datepicker>
+                  <mat-datepicker #picker startView="month" [startAt]="date"></mat-datepicker>
                 </mat-form-field>
 
-                <p style="color:white;  ">Horario</p>
-                <input type="time" class="time-picker" matInput formControlName="hora">
+                <p style="color:white;  ">Horarios disponibles</p>
+                <!--<input type="time" class="time-picker" matInput formControlName="hora">
+              <br />-->
+                <mat-select formControlName="hora" panelClass="custom-select-panel">
+                  @for(dia of listadeTurnosDelDia; track dia.numero){
+                  <mat-option [ngStyle]="{'background-color': dia.disponible ? 'green' : 'red'}" [disabled]="(dia.disponible == false)" value="{{dia.numero}}-{{dia.horario}}">{{ dia.disponible? dia.horario: nodisponible(dia.horario) }}</mat-option>
+                  }
+                  @for(p of listadoDeProfesionales ; track p.id){
+
+                  }
+                </mat-select>
+
+
               </form>
             </div>
 
@@ -98,7 +109,13 @@
       </div>
       }
     </mat-card>
-   
+
+    @if(this.usuarioActual.dias.length > 0){
+    <div>
+      <p>Usted tiene {{this.usuarioActual.dias.length}} Turnos reservados</p>
+      <button (click)="mostrarTurnos()">Ver turnos</button>
+    </div>
+    }
 
   </div>
   @if(habilitarCalendario){
@@ -108,16 +125,21 @@
     <br />
     @if(existenTurnos){
     <div style="width:100%; height:540px; background-color:white; ">
-      <h1>Usted tiene {{this.turnos.length}} turnos reservados</h1>
-      @for(turno of turnos; track turno.numero){
-      <div>
-        <h3>Especialidad: {{turno.especialidad}} con el profesional:  {{turno.profesional}} Fecha: {{formatearFecha(turno.fecha)}}  a las {{turno.horario}}  </h3>
-
+      <h1>Usted tiene {{this.usuarioActual.dias.length}} turnos reservados</h1>
+      <div style="width:80%; display:flex; margin: 0 auto; max-height:200px; overflow-y:scroll; background-color:white;">
+        @for(dia of this.usuarioActual.dias; track dia.id){
+        <p>El dia {{recortarYFormatearFecha(dia.fecha)}} tienes:</p>
+        @for(turno of dia.turnos; track turno.numero){
+        <p>{{turno.numero}}-{{turno.especialidad}} con: {{turno.profesional}} a las: {{turno.horarioH}} </p>
+        }
+        <!--<h3>Especialidad: {{turno.especialidad}} con el profesional:  {{turno.profesional}} Fecha: {{formatearFecha(turno.fecha)}}  a las {{turno.horarioH}}  </h3>-->
+        <!--<h4>Especialidad: {{this.usuarioActual.dias.length}}</h4>-->
       </div>
       }
+
+
     </div>
     }
-
     <!--<app-calendario [turno]="turno"></app-calendario>-->
 
   </div>

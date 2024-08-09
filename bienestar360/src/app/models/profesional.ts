@@ -4,7 +4,7 @@ export class Profesional {
   id: number   | any;
   nombre: string  | any;
   especialidad: string  | any;
-  dias: diaDeCalendario[] | any;
+  dias: diaDeCalendario[];
   esProfesional: boolean | any;
   clave: string | any;
 
@@ -12,7 +12,7 @@ export class Profesional {
     this.id = 0;
     this.nombre = '';
     this.especialidad = '';
-    this.dias = [];
+    this.dias = new Array();
     this.esProfesional = false;
     this.clave = '';
   }

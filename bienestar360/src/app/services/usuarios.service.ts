@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Profesional } from '../models/profesional';
+import { diaDeCalendario } from '../models/diaDeCalendario';
+import { Turno } from '../models/turno';
 
 @Injectable({
   providedIn: 'root'
@@ -89,6 +91,7 @@ export class UsuariosService {
       var index = this.profesionales.findIndex((p) => p.id === pro.id);
       if (index !== -1) {
         this.profesionales[index] = pro;
+        console.log("actualizando profesional", pro);
       }
       this.guardarProfesionalEnLocalStorage();
       resolve(this.profesionales);
@@ -111,7 +114,46 @@ export class UsuariosService {
       resolve(profesionalEncontrado);
     });
   }
- 
 
+  obtenerTurnosDeProfesional(id: number): diaDeCalendario[] {
+    this.loadProfesionalesFromStorage();
+    const soloProfesionales = this.profesionales.filter((p) => p.esProfesional == true);
+    const profesionalEncontrado = soloProfesionales.find((p) => p.id === id);
+    if (typeof window !== 'undefined' && window.localStorage) {
+      const turnosDelMes = profesionalEncontrado?.dias;
+      if (turnosDelMes)
+      return turnosDelMes;
+    }
+    return [];
+  }
+
+  reservarTurno(pro: Profesional, paciente: Profesional, turno: Turno) {
+    console.log("reservando turno");
+    //console.log("voy a buscar en prodias ", turno.fecha?.getDate())
+    //console.log("en pro", pro.dias)
+     
+        //necesito encontrar el turno al cual el paciente se refiere
+      var turnosDeEseDia = pro.dias.find(d => d.dia.numero == turno.fecha?.getDate())?.turnos;
+    var indiceturnoDia = pro.dias.findIndex(d => d.dia.numero == turno.fecha?.getDate());
+    console.log("el inidice del turnoDia es", indiceturnoDia);
+        //si ese turno existe
+    console.log("ahora busco en turnos", turnosDeEseDia)
+    console.log("estte numero", turno.numero)
+      if (turnosDeEseDia?.findIndex(t => t.numero == turno.numero) != -1) {
+        let indiceturno = turnosDeEseDia?.findIndex(t => t.numero == turno.numero);
+        console.log("indice del turno es", indiceturno);
+        if (turnosDeEseDia && indiceturno) {
+          turnosDeEseDia[indiceturno].disponible = false;
+          turnosDeEseDia[indiceturno].nombreUsuario = paciente.nombre;
+          turnosDeEseDia[indiceturno].fecha = turno.fecha;
+          turnosDeEseDia[indiceturno].duracion = turno.duracion;
+          turnosDeEseDia[indiceturno].horarioH = turno.horarioH;
+          pro.dias[indiceturnoDia].turnos = turnosDeEseDia;
+          this.actualizarProfesional(pro);
+           }
+        }
+      console.log("actualizando profesional", pro);
+      this.guardarProfesionalEnLocalStorage();
+  }
 
 }
